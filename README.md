@@ -20,7 +20,7 @@
      Nanati Dereje  - 1177/14
      Nebat Hussen   - 1178/14
 ### _Notice_
-  _Each contributor’s code has been attached up there in the Contributions section._
+  _Each contributors' code has been attached up there in the Contributions section._
      
 
    
