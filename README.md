@@ -9,7 +9,8 @@
      > MARKING ATTENDANCE
      > SECURE LOGIN SYSTEM TO ADMIN DATABASE AND so on... 
 ***
-<img width="598" alt="DevelopersInfo" src="https://github.com/Section-D-group3/Cpp_Project2/assets/130219241/8ef04111-9065-46e8-be00-9bdb53f2f743">
+<img width="595" alt="DevInfo" src="https://github.com/Section-D-group3/Cpp_Project2/assets/130219241/9cca09cf-0348-4938-abb3-4f69b50ccb48">
+
 
    
 
