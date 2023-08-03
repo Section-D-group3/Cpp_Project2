@@ -19,9 +19,8 @@
      Nebyat Takele  - 1282/14
      Nanati Dereje  - 1177/14
      Nebat Hussen   - 1178/14
-### ****Notice****
-     
-         _Each contributor’s code has been attached up there in the Contributions section.__
+### _Notice_
+  _Each contributor’s code has been attached up there in the Contributions section._
      
 
    
