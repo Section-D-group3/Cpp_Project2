@@ -33,7 +33,7 @@ void delay2(){
   }
 }
 
-// THIS LAST(BUT NOT LEAST) FUNCTION HELPS US TO FLOW THROUGH THE PROGRAM EASLY.
+// THIS FUNCTION HELPS US TO FLOW THROUGH THE PROGRAM EASLY.
 int goBack(int to){
   int backTo = to;
   switch(backTo){
