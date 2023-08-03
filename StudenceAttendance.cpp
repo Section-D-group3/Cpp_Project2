@@ -604,7 +604,7 @@ void prepareAttendance(int couresCode){
 }
 // HERE ADMIN ANNOUNCES THE DAY FOR THE COURSES.
 void announceClassDays(){
-  // delay();
+  delay();
   system("cls");
   cout<<"\t\t\tCLASS DAYS"<<endl<<endl;
   cout<<"1 SEE AVAILABLE CLASS DAYS\n";
