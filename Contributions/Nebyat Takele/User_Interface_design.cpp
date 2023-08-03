@@ -1,4 +1,4 @@
-// THIS FUNCTION MAKES THE USER INTERFACE AND EXPIRIENCE MORE ATTRACTIVE.
+
 void delay(){
   cout<<"LOADING";
   for(int a = 0 ; a<4; ++a){
