@@ -1,7 +1,7 @@
 # Cpp_Project2
 ## PROJECT - STUDENT ATTENDANCE MANAGEMENT SYSTEM
  - This project is intended to **track and manage student registration and attendance system**.
-### - A lot of Functionalities are included, some of them include:
+### - A lot of Functionalities are included, some of them are:
 ***
      > REGISTERING STUDENTS
      > ARRANGING CLASS SCHEDUAL
