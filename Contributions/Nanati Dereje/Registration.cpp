@@ -1,3 +1,4 @@
+
 // STUDENT(S) REGISTRATION GOES HERE.
 void registerStudent(){
   delay();
@@ -6,12 +7,9 @@ void registerStudent(){
   int n;
   cout<<"HOW MANY STUDENTS TO REGISTER?: ";
   cin>>n;
-  fstream Myfile1,Myfile2,Myfile3,Myfile4;
-  Myfile1.open("firstName.txt",ios::app);
-  Myfile2.open("lastName.txt",ios::app);
-  Myfile3.open("id.txt",ios::app);
-  Myfile4.open("gender.txt",ios::app);
-  if(Myfile1.is_open() && Myfile2.is_open() && Myfile3.is_open() && Myfile4.is_open()){
+  fstream Myfile;
+  Myfile.open("documnet.txt",ios::app);
+  if(Myfile.is_open()){
     for(int i = 0; i < n; ++i){
     cout<<"STUDENT"<<i+1<<" : "<<endl;
     cout<<"FIRST_NAME: ";
@@ -24,33 +22,30 @@ void registerStudent(){
     checkId:                    // IT CKECKS IF THE ID IS ALREADY IN USE OR NOT WHILE REGISTERING NEW STUDENTS.
     cout<<"ID: ";
     cin>>stud[i].id;
-    for(const string &b: id_v){
+    for(const string &b: readfile.id_v){
       if(stud[i].id == b){
         cout<<"\nID ALREADY EXISTS!.\n";goto checkId;
       }
     }
-    Myfile1<<endl<<stud[i].firstName;
-    Myfile2<<endl<<stud[i].lastName;
-    Myfile3<<endl<<stud[i].id;
-    Myfile4<<endl<<stud[i].gender;
+    Myfile<<endl<<stud[i].firstName<<"\t"<<stud[i].lastName<<"\t"<<stud[i].id<<"\t"<<stud[i].gender;
     }
-    Myfile1.close();Myfile2.close();Myfile3.close();Myfile4.close();
+    Myfile.close();
     appendStudents();
     cout<<"\n\nREGISTRATION FINISHED SUCCESSFULY!!"<<endl; // REGISTRATION ENDS.
   }else{
     cout<<"\nERROR: OPENING FILE FAILED!"<<endl;
   }
   cout<<"\n\n\n";
-  goBack();
+  goBack(1);
   exit(0);
 };
 
 // HERE THE ADMIN CAN SEE ALL THE REGISTERD STUDENTS.
-void checkListOfRegistredStudent(){
+void display(){
   appendStudents();
   system("cls");
   cout<<"\t\t\tREGISTERED STUDENTS LIST"<<endl<<endl;
-  if(fName_v.size() == 1){
+  if(readfile.fName_v.size() == 1){
       cout<<"\n\t\t\t --------------";
       cout<<"\n\t\t\t|              |";
       cout<<"\n\t\t\t|  EMPTY FILE  |";
@@ -75,29 +70,35 @@ void checkListOfRegistredStudent(){
       delay();
       system("cls");
       cout<<"\t\t\tALPHABET: "<<letter<<endl<<endl;
-      for(int i = 0; i < fName_v.size(); ++i){
-        for(int j = 0; j < fName_v.size(); ++j){
-          if((fName_v[j][0] == letter || fName_v[j][0] == convertToUpperCase || static_cast<char>(toupper(fName_v[j][0])) == letter) && j!=0){
-            break;
-          }else if(j == (fName_v.size() - 1) && letter != fName_v[j][0]){
-            cout<<"\nNO STUDENT FOUND!"<<endl;goBack();exit(0);
+      ifstream file("documnet.txt");
+      if(file.is_open()){
+        string line;
+        for(int i = 0 ;i < readfile.fName_v.size(); ++i){
+          for(int j = 0; j < readfile.fName_v.size(); ++j){
+            if(j!=0 && (readfile.fName_v[j][0] == letter || readfile.fName_v[j][0] == convertToUpperCase || static_cast<char>(toupper(readfile.fName_v[j][0])) == letter) ){
+              break;
+            }else if(j == (readfile.fName_v.size() - 1) && letter != readfile.fName_v[j][0]){
+              file.close();
+              cout<<"\nNO STUDENT FOUND!"<<endl;goBack(1);exit(0);
+            }
+          }
+          if(i == 0){
+            cout<<readfile.fName_v[i]<<"\t"<<readfile.lName_v[i]<<"\t"<<readfile.id_v[i]<<"\t"<<readfile.gender_v[i]<<endl;
+          }else if((readfile.fName_v[i][0] == letter) || (readfile.fName_v[i][0] == convertToUpperCase) || (static_cast<char>(toupper(readfile.fName_v[i][0])) == letter)){
+            cout<<readfile.fName_v[i]<<"\t\t"<<readfile.lName_v[i]<<"\t\t"<<readfile.id_v[i]<<"\t\t"<<readfile.gender_v[i]<<endl;
           }
         }
-        if(i == 0){
-          cout<<fName_v[i]<<"\t"<<lName_v[i]<<"\t"<<id_v[i]<<"\t"<<gender_v[i]<<endl;
-        }else if((fName_v[i][0] == letter) || (fName_v[i][0] == convertToUpperCase) || (static_cast<char>(toupper(fName_v[i][0])) == letter)){
-          cout<<fName_v[i]<<"\t\t"<<lName_v[i]<<"\t\t"<<id_v[i]<<"\t\t"<<gender_v[i]<<endl;
-        }
+        file.close();
       }
     }else if(choice == 2){
       delay();
       system("cls");
       cout<<"\t\t\tALL REGISTERED STUDENTS LIST"<<endl<<endl;
-      for(int i = 0; i < fName_v.size(); ++i){
+      for(int i = 0; i < readfile.fName_v.size(); ++i){
         if(i == 0){
-          cout<<fName_v[i]<<"\t"<<lName_v[i]<<"\t"<<id_v[i]<<"\t"<<gender_v[i]<<endl;
+          cout<<readfile.fName_v[i]<<"\t"<<readfile.lName_v[i]<<"\t"<<readfile.id_v[i]<<"\t"<<readfile.gender_v[i]<<endl;
         }else{
-          cout<<fName_v[i]<<"\t\t"<<lName_v[i]<<"\t\t"<<id_v[i]<<"\t\t"<<gender_v[i]<<endl;
+          cout<<readfile.fName_v[i]<<"\t\t"<<readfile.lName_v[i]<<"\t\t"<<readfile.id_v[i]<<"\t\t"<<readfile.gender_v[i]<<endl;
         }
       }
     }else if(choice == 3){
@@ -107,12 +108,12 @@ void checkListOfRegistredStudent(){
     }
   }
   cout<<"\n\n\n";
-  goBack();
+  goBack(1);
   exit(0);
 }
 
 // IF THE ADMIN WANTS TO CHECK WHETHER THE STUDENT IS REGISTERD OR NOT, HE COMES HERE AND TYPES HIM/HER ID.
-void checkPresence(){
+void search(){
   delay();
   system("cls");
   string id;
@@ -121,18 +122,18 @@ void checkPresence(){
   cin.ignore();getline(cin,id);
   delay();
   system("cls");
-  for(int i = 0; i < id_v.size(); ++i){
-    if(i == (id_v.size()-1) && (id_v[i] != id)){
+  for(int i = 0; i < readfile.id_v.size(); ++i){
+    if(i == (readfile.id_v.size()-1) && (readfile.id_v[i] != id)){
       cout<<"\nSTUDENT HAS NOT BEEN REGISTERED YET!";
-    }else if(id_v[i] != id){
+    }else if(readfile.id_v[i] != id){
       continue;
     }else{
-      cout<<fName_v[0]<<"\t"<<lName_v[0]<<"\t"<<gender_v[0]<<"\t"<<id_v[0]<<endl;
-      cout<<fName_v[i]<<"\t\t"<<lName_v[i]<<"\t\t"<<gender_v[i]<<"\t\t"<<id_v[i]<<endl;
+      cout<<readfile.fName_v[0]<<"\t"<<readfile.lName_v[0]<<"\t"<<readfile.gender_v[0]<<"\t"<<readfile.id_v[0]<<endl;
+      cout<<readfile.fName_v[i]<<"\t\t"<<readfile.lName_v[i]<<"\t\t"<<readfile.gender_v[i]<<"\t\t"<<readfile.id_v[i]<<endl;
       break;
     }
   }
   cout<<"\n\n\n";
-  goBack();
+  goBack(1);
   exit(0);
 }
